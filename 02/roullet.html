@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    td {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text" id="bet" placeholder="배팅금액">
+  <input type="text" id="num" placeholder="번호 맞추기">
+  <button onclick="startRoulette()">가자 일확 천굼!</button>
+  <table border="1">
+
+  </table>
+  </div>
+  <script>
+    let redIdx = -1;
+    let blueIdx = -1;
+    let greenIdx = -1;
+
+    let myNum = parseInt(document.querySelector('#num').value) -1;
+    let myBet = parseInt(document.querySelector('#bet').value);
+    function startRoulette() {
+      const tds = document.querySelectorAll('td');
+      const interval = setInterval(function () {
+        for (let i = 0; i < tds.length; i++) {
+          tds[i].style = 'background-color:white;';
+        }
+        ranIdx = Math.floor(Math.random() * tds.length);
+        tds[ranIdx].style = 'background-color:red;';
+
+        blueIdx = Math.floor(Math.random() * tds.length);
+        tds[blueIdx].style = 'background-color:blue;';
+
+        greenIdx = Math.floor(Math.random() * tds.length);
+        tds[greenIdx].style = 'background-color:green;';
+      }, 200);
+      setTimeout(function () {
+        alert(`빨강번호:${redIdx}, 파랑번호:${blueIdx}, 녹색번호:${greenIdx}`);
+        clearInterval(interval);
+
+  
+        if (myNum == redIdx) {
+          myBet *= -10;
+          alert(`빨간 번호를 맞추셨습니다 배팅금액은 : ${myBet} 입니다`);
+        } else if (myNum == blueIdx) {
+          myBet *= 10;
+          alert(`파란 번호를 맞추셨습니다 배팅금액은 : ${myBet} 입니다`);
+        } else if (myNum == greenIdx) {
+          myBet *= 2;
+          alert(`녹색 번호를 맞추셨습니다 배팅금액은 : ${myBet} 입니다`);
+        } else {
+          alert(`아무런 번호를 맞추지 못하였습니다 배팅금액은 : ${myBet} 입니다`);
+        }
+
+      }, 3000);
+    }
+
+
+    let table = document.querySelector('table');
+    let html = "";
+    let cnt = 1;
+    for (let i = 0; i < 5; i++) {
+      html += "<tr>";
+      for (let j = 1; j <= 10; j++) {
+        html += "<td>" + (cnt++) + "</td>";
+      }
+      html += "</tr>"
+    }
+
+    table.innerHTML = html;
+  </script>
+</body>
+
+</html>
