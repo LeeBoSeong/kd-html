@@ -27,8 +27,7 @@
     let blueIdx = -1;
     let greenIdx = -1;
 
-    let myNum = parseInt(document.querySelector('#num').value) -1;
-    let myBet = parseInt(document.querySelector('#bet').value);
+
     function startRoulette() {
       const tds = document.querySelectorAll('td');
       const interval = setInterval(function () {
@@ -45,17 +44,21 @@
         tds[greenIdx].style = 'background-color:green;';
       }, 200);
       setTimeout(function () {
+        
+        let myNum = parseInt(document.querySelector('#num').value) - 1;
+        let myBet = parseInt(document.querySelector('#bet').value);
         alert(`빨강번호:${redIdx}, 파랑번호:${blueIdx}, 녹색번호:${greenIdx}`);
         clearInterval(interval);
 
-  
-        if (myNum == redIdx) {
+
+
+        if (myNum === redIdx) {
           myBet *= -10;
           alert(`빨간 번호를 맞추셨습니다 배팅금액은 : ${myBet} 입니다`);
-        } else if (myNum == blueIdx) {
+        } else if (myNum === blueIdx) {
           myBet *= 10;
           alert(`파란 번호를 맞추셨습니다 배팅금액은 : ${myBet} 입니다`);
-        } else if (myNum == greenIdx) {
+        } else if (myNum === greenIdx) {
           myBet *= 2;
           alert(`녹색 번호를 맞추셨습니다 배팅금액은 : ${myBet} 입니다`);
         } else {
