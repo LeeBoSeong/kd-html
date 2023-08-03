@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form onsubmit="return check()">
+  <input type="text" id="name" placeholder="이름 입력"><br>
+  <input type="text" id="id" placeholder="아이디 입력"><br>
+  <input type="password" id="pwd" placeholder="비밀번호 입력"><br>
+  <input type="text" id="phonNum" placeholder="휴대폰 입력" maxlength="11"><br>
+  <div id="gBtn">
+    <label for="m">남자</label>
+    <input type="radio" id="m" name="gender">
+    <label for="w">여자</label>
+    <input type="radio" id="w" name="gender">
+  </div>
+  <button>확인</button>
+</form>
+
+<script>
+  function check(){
+    const name = document.querySelector('#name');
+    const id = document.querySelector('#id');
+    const pwd = document.querySelector('#pwd');
+    const phonNum = document.querySelector('#phonNum');
+    const gender = document.querySelector('input[name=gender]:checked');
+    if(name.value.trim().length < 2){
+      alert('이름은 2글자 이상입니다');
+      return false;
+    }
+    if(id.value.trim().length < 4 ){
+      alert('아이디는 4글자 이상입니다');
+      return false; 
+    }
+    if(pwd.value.trim().length < 4 ){
+      alert('비번는 4글자 이상입니다');
+      return false;
+    }
+    if(phonNum.value.trim().length < 11 ){
+      alert('번호는 11글자 입니다');
+      return false;
+    }
+    if(gender === null){
+      alert('두개중 하나 선택 필수');
+      return false;
+    }
+    return true;
+  }
+
+</script>
+</body>
+
+</html>
