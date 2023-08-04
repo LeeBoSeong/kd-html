@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //let arr1 = new Array();
+    let arr = [];
+    
+    for(let i = 0; i <3; i++){
+      let rNum = Math.floor(Math.random()*100)+1;
+      
+       if(arr.indexOf(rNum) === -1){
+        arr.push(rNum);
+       }else{
+        i--;
+       } 
+       
+    }
+    console.log(arr);
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    const arr = [];
+    window.onload = function () {
+      const gDiv = document.querySelector('#gDiv');
+      gDiv.style.display = 'none';
+      const sDiv = document.querySelector('#sDiv');
+      document.querySelector('#sBtn').onclick = function () {
+        sDiv.style.display = 'none';
+        gDiv.style.display = 'block';
+
+        for (let i = 0; i < 3; i++) {
+          let rNum = Math.floor(Math.random() * 9) + 1;
+          if (arr.indexOf(rNum) === -1) {
+            arr.push(rNum);
+          } else {
+            i--;
+          }
+        }
+        console.log(arr);
+      }
+      document.querySelector('#gBtn').onclick = function () {
+        let nums1 = parseInt(document.querySelector('#num1').value);
+        let nums2 = parseInt(document.querySelector('#num2').value);
+        let nums3 = parseInt(document.querySelector('#num3').value);
+
+        let numarr = [];
+        numarr.push(nums1);
+        numarr.push(nums2);
+        numarr.push(nums3);
+
+        console.log(numarr);
+
+        let strike = 0;
+        let ball = 0;
+        for (let i = 0; i < 3; i++) {
+          for(let j = 0; j < 3; j++){
+            if(arr[i] === numarr[j] && i===j){
+              strike++;
+              continue;
+            } else if(arr[i] === numarr[j]){
+              ball++;
+            }
+            
+          }
+        }
+        alert('스트라이크 :' + `${strike}` +','+ '볼 : ' + `${ball}`  )
+      }
+
+      //  const num1 = document.querySelector('#num1');
+      //  const num11 = parseInt(num1.value);
+      //  let strike = 0;
+      //  let ball = 0;
+      //  if(arr[0] === num11){
+      //   strike++;
+      //  }
+      //  if(arr[1] ===num11){
+      //   ball++;
+      //  }
+      //  if(arr[2] ===num11){
+      //   ball++;
+      //  }
+
+      //  if(arr[0] === num11){
+      //   ball++;
+      //  }
+      //  if(arr[1] ===num11){
+      //   strike++;
+      //  }
+      //  if(arr[2] ===num11){
+      //   ball++;
+      //  }
+
+      //  if(arr[0] === num11){
+      //   ball++;
+      //  }
+      //  if(arr[1] ===num11){
+      //   ball++;
+      //  }
+      //  if(arr[2] ===num11){
+      //   strike++;
+      //  }
+    }
+  
+  </script>
+  <div id="sDiv">
+    <button id="sBtn">시작</button>
+  </div>
+  <div id="gDiv">
+    <input type="number" min="0" max="9" id="num1">
+    <input type="number" min="0" max="9" id="num2">
+    <input type="number" min="0" max="9" id="num3">
+    <BUTTON id="gBtn">맞추기</BUTTON>
+  </div>
+
+</body>
+
+</html>
