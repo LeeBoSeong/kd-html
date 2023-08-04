@@ -1,75 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    img {
-      padding: 1;
-      margin: 1;
-      width: 80px;
-      height: 100px;
+    img{
+      padding:1;
+      margin:1;
+      width:80px;
+      height:100px;
     }
   </style>
 </head>
-
 <body>
   <button onclick="startCard()">시작</button>
   <div id="table">
 
   </div>
-
   <script>
-    function reverse(obj) {
-      const openImgs = document.querySelectorAll('img[data-open="1"]');
-      if (openImgs.length === 2) {
+    const arr = []
+    function reverse(obj){
+      let openImgs = document.querySelectorAll('img[data-open="1"]');
+      console.log(openImgs);
+      if(openImgs.length===2){
         return;
       }
-
       const num = obj.getAttribute('data-num');
       const imgPath = `/img/cards/${num}.png`;
       obj.src = imgPath;
-      obj.setAttribute('data-open', '1');
-      if (openImgs.length == 1) {
-            setTimeout(function(){
-              openImgs = document.querySelectorAll('img[data-open="1"]');
-              for(let i=0; i<openImgs.length; i++){
-                openImgs[i].src = `/img/cards/back.png`;
-                openImgs[i].setAttribute('data-open','0');
-              }
-            },2000);
-        }
+      obj.setAttribute('data-open','1');
+      if(openImgs.length==1){
+        setTimeout(function(){
+          openImgs = document.querySelectorAll('img[data-open="1"]');
+          for(let i=0;i<openImgs.length;i++){
+            openImgs[i].src =  `/img/cards/back.png`;
+            openImgs[i].setAttribute('data-open','0');
+          }
+        },1000);
+
+      }
     }
-    function startCard() {
-
-      let nums = [];
-      for (let i = 0; i < 52; i++) {
-        let rNum = parseInt(Math.floor(Math.random() * 52));
-        if (nums.indexOf(rNum) === -1) {
-          nums.push(rNum);
-        } else {
-          i--;
+    function startCard(){
+      arr.length = 0;
+      while(arr.length<52){
+        const rNum = Math.floor(Math.random()*52);
+        if(!arr.includes(rNum)){
+          arr.push(rNum);
         }
       }
-
-      let html = "";
+      let html = '<table>';
       let cnt = 0;
-      html += '<table border="1">';
-      for (let i = 0; i < 4; i++) {
+      for(let i=1;i<5;i++){
         html += '<tr>';
-        for (let j = 0; j < 13; j++) {
-          html += `<td><img src="/img/cards/back.png" data-num="${nums[cnt++]}"`;
-          html += ` onclick="reverse(this)" data-open="0"></td>`;
+        for(let j=1;j<14;j++){
+          html += `<td><img src="/img/cards/back.png" data-num="${arr[cnt++]}" `;
+          html += ` onclick="reverse(this)" data-open="0"></td>`
         }
-        html += '</tr>';
+        html += '</td>'
       }
-      html += '</table>';
+      html += '</table>'
       document.querySelector('#table').innerHTML = html;
     }
-
   </script>
 </body>
-
 </html>
